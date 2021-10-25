@@ -1,7 +1,7 @@
 ## How to run the app
 
-1. `npm i` > install the packages
-2. `npm run dev` > Run the app (client + server) in development mode
-3. `npm run server` Run server with nodemon
-4. `npm start` Run server with node
-5. `npm run client` To start client
+1. `cd server && npm i` > install the required packages for the server
+2. `cd client && npm i` > install required packages for the client
+3. `npm i` > root folder
+4. `npm run dev` to start development mode (client + server)
+5. `cd server && npm run dev` To start typescript watcher
