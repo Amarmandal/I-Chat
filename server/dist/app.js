@@ -12,7 +12,7 @@ const passport_1 = __importDefault(require("passport"));
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 //importing routes
 const authRoutes_1 = __importDefault(require("./routes/authRoutes"));
-const authStrategy_1 = require("./middlewares/authStrategy");
+const authStrategy_1 = require("./config/authStrategy");
 const app = (0, express_1.default)();
 const port = process.env.PORT || 8000;
 app.use(express_1.default.json());
@@ -23,9 +23,9 @@ app.use((0, cookie_parser_1.default)());
 (0, database_1.connectDB)();
 (0, authStrategy_1.loadAuthStrategy)();
 //using routes
-app.use("/api", authRoutes_1.default);
-app.get("/", (req, res) => {
-    res.send("Hello World!");
+app.use('/api', authRoutes_1.default);
+app.get('/', (req, res) => {
+    res.send('Hello World!');
 });
 // app.get(
 //   "/auth/google/secrets",
@@ -37,7 +37,7 @@ app.get("/", (req, res) => {
 //     // res.redirect("/secrets");
 //   }
 // );
-app.get("/test/cookie", (req, res) => {
+app.get('/test/cookie', (req, res) => {
     console.log(req.cookies);
 });
 app.listen(port, () => {

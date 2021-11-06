@@ -1,35 +1,34 @@
-import dotenv from "dotenv";
-dotenv.config();
-import express, { Request, Response } from "express";
-import cors from "cors";
-import { connectDB } from "./config/database";
-import passport from "passport";
-import cookieParser from "cookie-parser";
+import dotenv from 'dotenv'
+dotenv.config()
+import express, { Request, Response } from 'express'
+import cors from 'cors'
+import { connectDB } from './config/database'
+import passport from 'passport'
+import cookieParser from 'cookie-parser'
 
 //importing routes
-import authRoutes from "./routes/authRoutes";
-import { loadAuthStrategy } from "./middlewares/authStrategy";
+import authRoutes from './routes/authRoutes'
+import { loadAuthStrategy } from './config/authStrategy'
 
+const app = express()
+const port = process.env.PORT || 8000
 
-const app = express();
-const port = process.env.PORT || 8000;
-
-app.use(express.json());
-app.use(cors());
-app.use(passport.initialize());
-app.use(cookieParser());
+app.use(express.json())
+app.use(cors())
+app.use(passport.initialize())
+app.use(cookieParser())
 
 //connect to the database
-connectDB();
+connectDB()
 
-loadAuthStrategy();
+loadAuthStrategy()
 
 //using routes
-app.use("/api", authRoutes);
+app.use('/api', authRoutes)
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Hello World!");
-});
+app.get('/', (req: Request, res: Response) => {
+	res.send('Hello World!')
+})
 
 // app.get(
 //   "/auth/google/secrets",
@@ -39,14 +38,14 @@ app.get("/", (req: Request, res: Response) => {
 //     //authenticated user details
 //     // console.log(req.user);
 //     // res.redirect("/secrets");
-    
+
 //   }
 // );
 
-app.get("/test/cookie", (req: Request, res: Response) => {
-  console.log(req.cookies);
+app.get('/test/cookie', (req: Request, res: Response) => {
+	console.log(req.cookies)
 })
 
 app.listen(port, () => {
-  console.log(`App Running on ${port}`);
-});
+	console.log(`App Running on ${port}`)
+})

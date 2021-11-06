@@ -1,25 +1,22 @@
-import { Router } from "express";
-import passport from "passport";
-import { authenticateWithGoogle } from "../controllers/authControllers";
+import { Router } from "express"
+import passport from "passport"
+import { authenticateWithGoogle } from "../controllers/authControllers"
 
-const router = Router();
+const router = Router()
 
-router.get(
-  "/auth/google",
-  passport.authenticate("google", { scope: ["profile", "email"] })
-);
+router.get("/auth/google", passport.authenticate("google", { scope: ["profile", "email"] }))
 
 router.get(
-  "/auth/google/callback",
-  passport.authenticate("google", {
-    failureRedirect: "/login",
-    session: false,
-  }),
-  authenticateWithGoogle
-);
+	"/auth/google/callback",
+	passport.authenticate("google", {
+		failureRedirect: "/login",
+		session: false,
+	}),
+	authenticateWithGoogle
+)
 
 router.get("/auth/test", (req, res) => {
-  res.status(200).json({"userInfo": req.user})
+	res.status(200).json({ userInfo: req.user })
 })
 
-export default router;
+export default router

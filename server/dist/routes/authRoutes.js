@@ -13,6 +13,6 @@ router.get("/auth/google/callback", passport_1.default.authenticate("google", {
     session: false,
 }), authControllers_1.authenticateWithGoogle);
 router.get("/auth/test", (req, res) => {
-    res.status(200).json({ "userInfo": req.user });
+    res.status(200).json({ userInfo: req.user });
 });
 exports.default = router;
